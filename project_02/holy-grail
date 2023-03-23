@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Holiy Grail</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            box-sizing: border-box;
+        }
+
+        #app {
+            display: flex;
+            flex-direction: column;
+            min-height: 100%;
+        }
+
+        main {
+            display: flex;
+            flex-direction: row;
+            flex: 1;
+        }
+
+        nav, aside {
+            flex: 0 0 auto;
+        }
+
+        nav {
+            display: flex;
+            flex-direction: column;
+            background-color: lightgrey;
+        }
+
+        nav > a {
+            margin: 6px;
+            padding: 6px;
+            border: 1px solid black;
+            background-color: blue;
+            color: white;
+            text-transform: uppercase;
+            text-decoration: none;
+        }
+
+        aside {
+            background-color: lightgrey;
+        }
+
+        .ad {
+            min-height: 300px;
+            border: 1px solid black;
+            background-color: yellow;
+            margin: 6px;
+            padding: 10px;
+        }
+
+    </style>
+
+</head>
+<body>
+    <div id="app">
+        <header>
+          Logo  
+        </header>
+        <main>
+          <nav>
+            <a href="">link #1</a>
+            <a href="">link #2</a>
+            <a href="">link #3</a>
+            <a href="">link #4</a>
+            <a href="">link #5</a>
+          </nav>
+          <section>
+            <article>
+              <h3>Article Title</h3>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius commodi laborum tempora obcaecati quasi hic. Tempore quos deleniti nemo maxime consequuntur perspiciatis earum quo ratione! Suscipit nisi nihil dolore et.</p>
+              <p>Vel corporis officiis, tempore cumque nobis, doloribus dolorum sequi facilis libero adipisci voluptas soluta reprehenderit voluptates dicta similique vero? Quam dolores labore magnam unde consectetur voluptatibus quod beatae, esse quibusdam.</p>
+              <p>Reprehenderit eveniet vel eum similique tempora, aut fugiat, recusandae dicta eius, quisquam illo quae. Libero fugiat tenetur illum, quos eos dolorum sequi ducimus aut error tempore praesentium impedit cumque similique.</p>
+              <p>Reiciendis numquam harum ab, quas debitis accusamus provident, voluptatibus corrupti possimus corporis eum culpa quaerat saepe nostrum. Corporis voluptatem molestias minus tempore id temporibus sapiente qui nesciunt, vel repellendus doloribus!</p>
+              <p>Repudiandae ullam aliquam in voluptatum tempore qui corrupti ut illo. Eum, dolorum numquam? Necessitatibus accusamus sapiente maiores atque ut architecto, voluptate reiciendis incidunt provident quasi. Corrupti, laborum commodi. Tempora, dignissimos!</p>
+            </article>
+            <article>
+              <h3>Article Title</h3>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius commodi laborum tempora obcaecati quasi hic. Tempore quos deleniti nemo maxime consequuntur perspiciatis earum quo ratione! Suscipit nisi nihil dolore et.</p>
+              <p>Vel corporis officiis, tempore cumque nobis, doloribus dolorum sequi facilis libero adipisci voluptas soluta reprehenderit voluptates dicta similique vero? Quam dolores labore magnam unde consectetur voluptatibus quod beatae, esse quibusdam.</p>
+              <p>Reprehenderit eveniet vel eum similique tempora, aut fugiat, recusandae dicta eius, quisquam illo quae. Libero fugiat tenetur illum, quos eos dolorum sequi ducimus aut error tempore praesentium impedit cumque similique.</p>
+              <p>Reiciendis numquam harum ab, quas debitis accusamus provident, voluptatibus corrupti possimus corporis eum culpa quaerat saepe nostrum. Corporis voluptatem molestias minus tempore id temporibus sapiente qui nesciunt, vel repellendus doloribus!</p>
+              <p>Repudiandae ullam aliquam in voluptatum tempore qui corrupti ut illo. Eum, dolorum numquam? Necessitatibus accusamus sapiente maiores atque ut architecto, voluptate reiciendis incidunt provident quasi. Corrupti, laborum commodi. Tempora, dignissimos!</p>
+            </article>
+          </section>
+          <aside>
+            <div class="ad">ADVERTISING</div>
+          </aside>
+        </main>
+        <footer>
+          Footer
+        </footer>
+      </div>
+</body>
+</html>

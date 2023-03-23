@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coffee Clicker</title>
+
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- JS loaded after html renders -->
+    <script type="text/javascript" defer src="script.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="column left-column">
+            <h3>Coffee: <span class="collected-coffee">0</span></h3>
+            <p><span id="coffee-per-second">0</span> coffee/second</p>
+            <div class="coffee-image">☕️</div>
+        </div>
+        <div class="column right-column">
+            <div class="coffee-producers">
+                <div class="producer">
+                    <div class="brand-purchase">
+                        <p>Basic Coffee Roast Machine<p>
+                        <button id="basic-coffee-machine">Buy</button>
+                    </div>
+                    <div class="purchase-details">
+                        <p>Quantity: <span id="basic-coffee-qty">0</span></p>
+                        <p>Coffee/second: 1</p>
+                        <p>Cost: 15 coffee</p>
+                    </div>
+                </div>
+                <div class="producer">
+                    <div class="brand-purchase">
+                        <p>French Press Machine<p>
+                        <button id="french-press-machine">Buy</button>
+                    </div>
+                    <div class="purchase-details">
+                        <p>Quantity: <span id="french-qty">0</span></p>
+                        <p>Coffee/second: 2</p>
+                        <p>Cost: 50 coffee</p>
+                    </div>
+                </div>
+                <div class="producer">
+                    <div class="brand-purchase">
+                        <p>Mr. Coffee Machine<p>
+                        <button id="mr-coffee-machine">Buy</button>
+                    </div>
+                    <div class="purchase-details">
+                        <p>Quantity: <span id="mr-coffee-qty">0</span></p>
+                        <p>Coffee/second: 3</p>
+                        <p>Cost: 100 coffee</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

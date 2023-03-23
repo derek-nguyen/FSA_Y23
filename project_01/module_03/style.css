@@ -1,0 +1,30 @@
+
+message-form {
+  width: 480px;
+  background-color: aqua;
+}
+
+.message-form-inputs,
+.message-form-actions {
+  padding: 10px;
+  background-color: blueviolet;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+.message-form-inputs > * {
+  width: 100%;
+}
+
+label[for=message-title]
+{
+margin-bottom: ;
+}
+
+
+#message-content {
+  margin-top: 5px;
+}
+
+button {
+    
+}

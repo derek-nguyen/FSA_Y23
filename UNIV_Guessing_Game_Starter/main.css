@@ -1,0 +1,78 @@
+/* resets properties to give more flexilibity to styling*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    margin-top: 3em;
+    color: #3c4d57;
+}
+
+.app {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #A5B5BB;
+    height: 75vh;
+
+}
+
+.main-content {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+header {
+    margin-bottom: 20px;
+}
+
+ul {
+    list-style: none;
+}
+
+.guesses-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.guessing-form {
+    flex: 1 1 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1em;
+    height: 20px;
+    width: 361px;
+    align-self: center;
+}
+
+#helper-response {
+    margin-bottom: 1em;
+    font-size: 20px;
+}
+
+input, button {
+    flex-grow: 1;
+    height: 2em;
+}
+
+.guesses {
+    display: flex;
+    justify-content: space-evenly;
+    align-content: center;
+    margin-top: 2em;
+    max-width: 200px;
+    align-self: center;
+}
+
+.guess {
+    display: inline;
+    border: 2px solid #3c4d57;
+    padding: 10px 15px;
+    
+    margin: 0 20px;
+}

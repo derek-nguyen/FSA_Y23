@@ -1,0 +1,36 @@
+#portfolioStyle {
+    text-decoration: underline;
+}
+
+img {
+    max-height: 276px;
+    margin-bottom: 10px;
+}
+
+.interest-container section {
+    border: 1px solid white;
+    padding: 0 10px 0;
+}
+
+.section-title-style {
+    border-bottom: 1px solid white ;
+}
+
+.section-1 {
+    margin-bottom: 1em;
+    overflow: auto;
+}
+
+.section-1 > img {
+    float: left;
+    margin-right: 10px;
+}
+
+.section-2 {
+    overflow: auto;
+}
+
+.section-2 > img {
+    float: right;
+    margin-left: 10px;
+}

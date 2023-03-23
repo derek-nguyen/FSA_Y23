@@ -1,0 +1,148 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.main-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    background-color: #44b;
+    padding: 0.5em 0;
+}
+
+.horizontal a {
+    color: white;
+}
+
+.horizontal {
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+}
+
+.horizontal a {
+    padding: .5em;
+    text-decoration: none;
+}
+
+.horizontal.nav-list a {
+    border-right: 1px solid #888;
+}
+
+.horizontal.nav-list li:last-of-type a {
+    border-right: none;
+}
+
+.sub-nav {
+    display: flex;
+    padding: 1rem 0;
+}
+
+.company-name {
+    font-size: 14px;
+    text-transform: uppercase;
+    margin: 0 15px 0 15px;
+    display: flex;
+    align-items: center;
+}
+
+.search-bar {
+    display: flex;
+    flex: 1;
+}
+
+.search-bar input {
+    flex: 1;
+    padding: .25em;
+}
+
+.search-bar button {
+    background-color: #44b;
+    color: white;
+    border: none;
+    padding: .25em .5em;
+}
+
+.ad {
+    margin: 0 10px 0 10px;
+    text-decoration: none;
+    background-color: red;
+    color: white;
+    padding: .25rem .5rem;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+    padding: 10px 0 10px 0;
+    background-color: #225;
+    color: white;
+}
+
+footer section {
+    flex-shrink: 1;
+    display: flex;
+    flex-direction: column;
+    margin-right: 5vw;
+
+}
+
+footer ul {
+    padding: 0;
+}
+
+footer ul li {
+    list-style: none;
+}
+
+footer ul li a {
+    text-decoration: none;
+    color: white;
+}
+
+.customer-care h2, .sales h2, .about-us h2 {
+    border-bottom: 1px white solid;
+    margin-bottom: 10px;
+}
+
+
+.material-icons-outlined {
+    font-family: "Material Icons";
+    font-size: inherit;
+}
+
+/* Add media styling below */
+@media (max-width:768px) {
+    .main-nav {
+        font-size: 12px;
+        display: flex;
+        align-items: center;
+        padding: 0 0 .2em 0;
+    }
+
+    .main-nav > .full-width {
+        display: none;
+    }
+
+    #menu {
+        font-size: 24px;
+        margin-right: .3em;
+        color: white;
+    }
+
+    .ad {
+        font-size: 12px;
+    }
+}
+
+@media (min-width:768px) {
+    #menu {
+        display: none;
+    }
+}

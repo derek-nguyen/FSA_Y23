@@ -1,0 +1,79 @@
+
+
+header {
+    border-bottom: 1px solid white;
+    font-size: 20px;
+    margin-bottom: 5px;
+
+}
+
+.header-navigation {
+    overflow: auto;
+    margin-bottom: 5px;
+}
+
+.full-name {
+    float: left;
+}
+
+.nav-links {
+    float: right;
+    margin-bottom: 5px;
+}
+
+.nav-links a {
+    padding: 0 10px;
+    text-decoration: none;
+}
+
+.nav-links a.active {
+    text-decoration: underline;
+}
+
+main {
+    width: 85%;
+}
+
+body {
+    background-color: #031018;
+    color: white;
+    font-family: 'Rubik', sans-serif;
+}
+
+a {
+    color: white;
+}
+
+h2 {
+    text-align: center;
+}
+
+main{
+    margin: 0 auto;
+}
+
+footer {
+    display: flex; /* arranges elements and stretches to the available space */
+    justify-content: center; /* https://developer.mozilla.org/en-US/docs/Web/CSS/justify-content */
+}
+footer > nav > h2 {
+    border-top-style: solid;
+    padding-top: 20px;
+    margin-bottom: 5px;
+}
+
+.social-links {
+    text-align: center;
+}
+
+/* #social-links {
+    list-style-type:none; /* removes list formatting 
+    display: flex; 
+    justify-content: center;
+
+} */
+
+.social-icons {
+    width: 30px;
+    padding: .5rem;
+}
