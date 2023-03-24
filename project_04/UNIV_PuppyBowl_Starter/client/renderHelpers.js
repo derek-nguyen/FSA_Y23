@@ -40,11 +40,14 @@ export const renderAllPlayers = (playerList) => {
     button.addEventListener('click', async () => {
       // const clickedButton = event.target;
       // const playerId = clickedButton.dataset.id;
-      const playerId = button.dataset.id;
+      // const playerId = button.dataset.id;
 
-      const playerObj = await fetchSinglePlayer((playerId));
-      console.log(playerObj); //adding to ensure button is working
-      renderSinglePlayer(playerObj);
+      // const playerObj = await fetchSinglePlayer((playerId));
+      // console.log(playerObj); //adding to ensure button is working
+      // renderSinglePlayer(playerObj);
+      // console.log(await fetchSinglePlayer(button.dataset.id))
+      renderSinglePlayer(await fetchSinglePlayer(button.dataset.id)) 
+
     });
   }
 
