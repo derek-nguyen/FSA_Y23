@@ -35,9 +35,7 @@ export const fetchSinglePlayer = async (playerId) => {
 
 export const addNewPlayer = async (playerObj) => {
     try {
-        const res = await fetch(
-            `${APIURL}`,
-            {
+        const res = await fetch(`${APIURL}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -48,8 +46,8 @@ export const addNewPlayer = async (playerObj) => {
                 }),
             }
         )
-        const result = await res.json();
-        console.log(result);
+        // const result = await res.json();
+        // console.log(result);
     } catch (err) {
         console.error(err);
     }
