@@ -7,7 +7,7 @@ const TicTacToe = () => {
   return (
     <div className="tic-tac-toe">
       {/* <h1>Tic-Tac-Toe</h1> */}
-      <div>
+      <div className="board">
         {board.map((item, index) => {
           return (
             <div className="cell" key={index}>
