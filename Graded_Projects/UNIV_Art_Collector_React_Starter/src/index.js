@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 
 // These imports won't work until you fix ./components/index.js
 import {
-  // Feature,
+  Feature,
   Loading,
   Preview,
   Search,

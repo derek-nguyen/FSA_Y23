@@ -26,9 +26,9 @@ const Preview = (props) => {
 
         try {
             const results = await fetchQueryResultsFromURL(pageUrl);
-            setSearchResults(results);
+             setSearchResults(results);
         } catch (error) {
-            console.error(error);
+            console.log(error);
         } finally {
             setIsLoading(false);
         }
@@ -39,14 +39,20 @@ const Preview = (props) => {
             <header className="pagination">
                 {/* This button should be disabled if nothing is set in info.prev, and should call fetchPage with info.prev when clicked */}
                 <button
-                    disabled={info.prev ? true : false}
+                    disabled={info.prev ? false : true}
                     className="previous"
                     onClick={async (event) => await fetchPage(info.prev)}>Previous</button>
                 {/* This button should be disabled if nothing is set in info.next, and should call fetchPage with info.next when clicked */}
                 <button
-                    disabled={info.next ? true : false}
+                    disabled={info.next ? false : true}
                     className="next"
-                    onClick={async (event) => await fetch(info.next)}>Next</button>
+                    // info.next
+                    onClick={async () => {
+                        const response = await fetch(info.next);
+                        const data = await response.json();
+                        setSearchResults(data);
+                    }}>Next</button> 
+
             </header>
             <section className="results">
                 {
