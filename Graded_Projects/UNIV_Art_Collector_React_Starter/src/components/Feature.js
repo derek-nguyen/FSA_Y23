@@ -31,7 +31,7 @@ import { fetchQueryResultsFromTermAndValue } from '../api';
  */
 const Searchable = (props) => {
     // Pulls the props from the parent component (App)
-    const { setSearchResults, setIsLoading, featuredResult, searchTerm, searchValue } = props;
+    const { setSearchResults, setIsLoading, featuredResult, searchTerm, searchValue, title } = props;
 
     return (
         <span className='content'>
@@ -48,7 +48,7 @@ const Searchable = (props) => {
                 } finally {
                     setIsLoading(false);
                 }
-            }}>SOME SEARCH TERM</a>
+            }}>{title}</a>
         </span>
     )
 }
@@ -88,19 +88,16 @@ const Searchable = (props) => {
  * This component should be exported as default.
  */
 const Feature = (props) => {
-    const { featuredResult, setIsLoading } = props;
-    // setting searchTerm and searchValue states
-    const [searchTerm, setSearchTerm] = useState('')
-    const [searchValue, setSearchValue] = useState('')
+    const { featuredResult, setIsLoading , setSearchResults} = props;
 
     return (
         <>
-            <Searchable
+            {/* <Searchable
                 featuredResult={featuredResult}
                 setIsLoading={setIsLoading}
                 searchTerm={searchTerm}
                 searchValue={searchValue}
-            />
+            /> */}
             {featuredResult ?
                 <main id='feature'>
                     <div className='object-feature'>
@@ -110,7 +107,14 @@ const Feature = (props) => {
                         </header>
                         <section className="facts">
                             <span className="title">Culture</span>
-                            <span className="content">{featuredResult.culture}</span>
+                            <Searchable 
+                                title={featuredResult.culture}
+                                searchTerm={'culture'} //should be the name of the primary museum resource
+                                searchValue={featuredResult.culture} 
+                                setIsLoading={setIsLoading} 
+                                setSearchResults={setSearchResults}
+                            />
+                            {/* <span className="content">{featuredResult.culture}</span> */}
                             <span className="title">Technique</span>
                             <span className="content">{featuredResult.technique}</span>
                             <span className="title">Dimensions</span>
