@@ -88,16 +88,10 @@ const Searchable = (props) => {
  * This component should be exported as default.
  */
 const Feature = (props) => {
-    const { featuredResult, setIsLoading , setSearchResults} = props;
+    const { featuredResult, setIsLoading, setSearchResults } = props;
 
     return (
         <>
-            {/* <Searchable
-                featuredResult={featuredResult}
-                setIsLoading={setIsLoading}
-                searchTerm={searchTerm}
-                searchValue={searchValue}
-            /> */}
             {featuredResult ?
                 <main id='feature'>
                     <div className='object-feature'>
@@ -107,22 +101,54 @@ const Feature = (props) => {
                         </header>
                         <section className="facts">
                             <span className="title">Culture</span>
-                            <Searchable 
+                            <Searchable
                                 title={featuredResult.culture}
                                 searchTerm={'culture'} //should be the name of the primary museum resource
-                                searchValue={featuredResult.culture} 
-                                setIsLoading={setIsLoading} 
+                                searchValue={featuredResult.culture}
+                                setIsLoading={setIsLoading}
                                 setSearchResults={setSearchResults}
                             />
                             {/* <span className="content">{featuredResult.culture}</span> */}
                             <span className="title">Technique</span>
-                            <span className="content">{featuredResult.technique}</span>
+                            <Searchable
+                                title={featuredResult.technique}
+                                searchTerm={'technique'}
+                                searchValue={featuredResult.technique}
+                                setIsLoading={setIsLoading}
+                                setSearchResults={setSearchResults}
+                            />
+                            {/* <span className="content">{featuredResult.technique}</span> */}
+                            <span className="title">Medium</span>
+                            <span className="content">{featuredResult.medium}</span>
+                            {/* <Searchable
+                                title={featuredResult.medium}
+                                searchTerm={'medium'}
+                                searchValue={featuredResult.medium}
+                                setIsLoading={setIsLoading}
+                                setSearchResults={setSearchResults}
+                            /> */}
+
                             <span className="title">Dimensions</span>
                             <span className="content">{featuredResult.dimensions}</span>
                             <span className="title">Person</span>
-                            <span className="content">{featuredResult.people.map((person) => {
-                                return <span key={person.personid}>{person.name}</span>
-                            })}</span>
+                            <span className="content">
+                                {featuredResult.people ?
+                                    featuredResult.people.map((person) => (
+                                        <span key={person.personid}>
+                                            <Searchable
+                                                title={person.name}
+                                                searchTerm={'person'}
+                                                searchValue={person.displayname}
+                                                setIsLoading={setIsLoading}
+                                                setSearchResults={setSearchResults}
+                                            />
+                                            {' '}
+                                        </span>
+                                    ))
+                                    :
+                                    <span></span>
+                                }
+                            </span>
                             <span className="title">Department</span>
                             <span className="content">{featuredResult.department}</span>
                             <span className="title">Division</span>
