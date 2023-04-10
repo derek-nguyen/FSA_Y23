@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 
 // Don't touch this import
 import { fetchQueryResultsFromTermAndValue } from '../api';
@@ -30,13 +30,27 @@ import { fetchQueryResultsFromTermAndValue } from '../api';
  *  - call setIsLoading, set it to false
  */
 const Searchable = (props) => {
+    // Pulls the props from the parent component (App)
+    const { setSearchResults, setIsLoading, featuredResult, searchTerm, searchValue } = props;
+
     return (
         <span className='content'>
             <a href="#" onClick={async (event) => {
-                console.log(event)
+                event.preventDefault();
+                setIsLoading(true);
+                // console.log(event);
+
+                try {
+                    const result = await fetchQueryResultsFromTermAndValue(searchTerm, searchValue);
+                    setSearchResults(result);
+                } catch (err) {
+                    console.error(err);
+                } finally {
+                    setIsLoading(false);
+                }
             }}>SOME SEARCH TERM</a>
         </span>
-  )
+    )
 }
 
 /**
@@ -73,8 +87,64 @@ const Searchable = (props) => {
  *
  * This component should be exported as default.
  */
-// const Feature = (props) => {
+const Feature = (props) => {
+    const { featuredResult, setIsLoading } = props;
+    // setting searchTerm and searchValue states
+    const [searchTerm, setSearchTerm] = useState('')
+    const [searchValue, setSearchValue] = useState('')
 
-// }
+    return (
+        <>
+            <Searchable
+                featuredResult={featuredResult}
+                setIsLoading={setIsLoading}
+                searchTerm={searchTerm}
+                searchValue={searchValue}
+            />
+            {featuredResult ?
+                <main id='feature'>
+                    <div className='object-feature'>
+                        <header>
+                            <h3>{featuredResult.title}</h3>
+                            <h4>{featuredResult.dated}</h4>
+                        </header>
+                        <section className="facts">
+                            <span className="title">Culture</span>
+                            <span className="content">{featuredResult.culture}</span>
+                            <span className="title">Technique</span>
+                            <span className="content">{featuredResult.technique}</span>
+                            <span className="title">Dimensions</span>
+                            <span className="content">{featuredResult.dimensions}</span>
+                            <span className="title">Person</span>
+                            <span className="content">{featuredResult.people.map((person) => {
+                                return <span key={person.personid}>{person.name}</span>
+                            })}</span>
+                            <span className="title">Department</span>
+                            <span className="content">{featuredResult.department}</span>
+                            <span className="title">Division</span>
+                            <span className="content">{featuredResult.division}</span>
+                            <span className="title">Contact</span>
+                            <span className="content">{featuredResult.contact}</span>
+                            <span className="title">Credit</span>
+                            <span className="content">{featuredResult.creditline}</span>
+                        </section>
+                        <section className='photos'>
+                            {/* <img src={`${featuredResult.primaryimageurl}`} alt='SOMETHING_WORTHWHILE' /> */}
+                            {featuredResult.images ?
+                                featuredResult.images.map((image) => {
+                                    return <img key={image.imageid} src={`${image.baseimageurl}`} alt={`${image.alttext}`} />
+                                })
+                                :
+                                <img></img>
+                            }
+                        </section>
+                    </div>
+                </main>
+                :
+                <main id="feature"></main>
+            }
+        </>
+    )
+}
 
-// export default Feature;
+export default Feature;
