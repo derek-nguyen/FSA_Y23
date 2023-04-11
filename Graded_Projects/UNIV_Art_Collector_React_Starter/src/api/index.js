@@ -13,6 +13,9 @@ export async function fetchQueryResultsFromTermAndValue(term, value) {
   try {
     const response = await fetch(`${ BASE_URL }/object?${ KEY }&${ term }=${ encodeURI(value.split('-').join('|')) }`);
     const data = await response.json();
+    // https://api.harvardartmuseums.org/object?apikey=a4145ed0-b34a-4171-afc4-d30e5f72655d&classification=any&century=any&keyword=&page=2
+    // term = classification
+    // 
 
     return data;
   } catch (error) {
