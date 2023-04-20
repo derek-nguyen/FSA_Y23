@@ -1,14 +1,22 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
-const Register = () => {
-    const [username,setUsername] = useState("")
-    const [password,setPassword] = useState("")
+import { API_URL, API_OBJECTS } from "../utilities/apiClient";
+
+const AccountForm = ({ setToken }) => {
+    const params = useParams()
+    const { actionType } = params;
+    console.log(actionType)
+
+    const [username, setUsername] = useState("")
+    const [password, setPassword] = useState("")
 
     const handleSubmit = async (event) => {
         event.preventDefault();
 
         const requestBody = {
-            guest: {
+            user: {
                 username,
                 password
             }
@@ -16,7 +24,7 @@ const Register = () => {
         const options = {
             method: "POST",
             headers: {
-                'Content-Type':'application/json'
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify(requestBody)
         }
@@ -28,11 +36,20 @@ const Register = () => {
         const res = await fetch(...Post method)
         const result = await fetch
         */
+        let response;
+        if (actionType === 'register') {
+             response = await fetch(API_URL + API_OBJECTS.Users.register, options);
+        } else if (actionType === 'login') {
+             response = await fetch(API_URL + API_OBJECTS.Users.login, options);
+        }
+        const result = await response.json();
+        console.log(result)
+        setToken(result?.data?.token)
     }
 
     return (
         <>
-            <h1>Sign Up</h1>
+            <h1>{actionType === 'register' ? "Sign Up" : "Log In"}</h1>
             <form onSubmit={handleSubmit}>
                 <label htmlFor="username">Username</label>
                 <input
@@ -48,8 +65,14 @@ const Register = () => {
                     value={password}
                     onChange={event => setPassword(event.target.value)}
                 />
-                <button type="submit">Register</button>
+                <button type="submit">{actionType === "register" ? "Register" : "Log In"}</button>
+                {actionType === "register"
+                    ? <Link to="/account/Login">Already have an account? Log in here.</Link>
+                    : <Link to="/account/register">Need an account? Register here.</Link>
+                }
             </form>
         </>
     )
 }
+
+export default AccountForm;

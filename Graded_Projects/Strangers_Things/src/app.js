@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Route, Link, Routes } from "react-router-dom";
+import { AccountForm } from "./components"
 
 // Route for /posts, /profile, /login, /register
 
 const App = () => {
-    // Will need to userEffect with the [token] 
+    // Will need to useEffect with the [token] 
+    const [token,setToken] = useState(null)
 
-
+    useEffect(()=>{
+        console.log("TOKEN: " + token)
+    },[token])
 
     return (
         <>
@@ -17,8 +21,8 @@ const App = () => {
                 <Link to="/">HOME</Link>
                 <Link to="/posts">POSTS</Link>
                 <Link to="/profile">PROFILE</Link>
-                <Link to="/login">LOGIN</Link>
-                <Link to="/register">REGISTER</Link>
+                {/* <Link to="/login">LOGIN</Link> */}
+                <Link to="/account/login">LOGIN</Link>
             </nav>
             <Routes>
                 <Route exact path="/" element={
@@ -30,13 +34,16 @@ const App = () => {
                 } />
                 <Route path="/profile" element={
                     <h1>Here's your profile</h1>
-                }/>
-                <Route path="/login" element={
+                } />
+                {/* <Route path="/login" element={
                     <h1>Login Page</h1>
-                }/>
-                <Route path="/register" element={
-                    <h1>Register your account</h1>
-                }/>
+                } /> */}
+                <Route path="/account/:actionType" element={
+                    <>
+                        {/* <h1>Register your account</h1> */}
+                        <AccountForm setToken={setToken}/>
+                    </>
+                } />
             </Routes>
         </>
     )

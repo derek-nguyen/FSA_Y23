@@ -13,6 +13,7 @@ root.render(
 )
 
 /* 
-
+Using React-router-dom ^v6.10
+- replaces BrowserRouter with createBrowserRouter
 
 */
