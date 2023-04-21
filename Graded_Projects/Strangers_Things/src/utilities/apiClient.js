@@ -4,24 +4,49 @@ API documentation: https://strangers-things.herokuapp.com/api/#api-url-format
 
 */
 
-const COHORT_NAME = '2301-FTB-PT-WEB-PT'
+// const COHORT_NAME = '2301-FTB-PT-WEB-PT'
 
-export const API_URL = `https://strangers-things.herokuapp.com/api/${COHORT_NAME}`
+const BASE_API_URL = `https://strangers-things.herokuapp.com/api/2301-FTB-PT-WEB-PT`
 
-export const API_OBJECTS = {
-    Users: {
-        register: '/users/register',
-        login: '/users/login',
-        me:'/users/me',
-    },
-    Posts: {
-        getPost: '/posts',
-        postPosts: '/posts',
-        patchPosts: '/posts/', // need to append POST_ID
-        deletePosts: '/posts/' // need to append POST_ID  
-    }
+const API_ENDPOINTS = {
+    register: '/users/register',
+    login: '/users/login',
+    me: '/users/me',
+    getPost: '/posts',
+    postPosts: '/posts',
+    patchPosts: '/posts/', // need to append POST_ID
+    deletePosts: '/posts/', // need to append POST_ID  
 }
 
-// export const userAuthentication = async (actionType, options) {
-//     const result = await fetch()
-// }
+const getURL = (endpoint) => {
+    const path = API_ENDPOINTS[endpoint];
+
+    if (!path) {
+        throw new Error('Invalid API endpoint specified');
+    }
+
+    return BASE_API_URL + path;
+}
+
+const getOptions = (method, body, token) => ({
+    method: method ? method.toUpperCase() : "GET",
+    headers: {
+        'Content-type': 'application/json',
+        ...(token && { 'Authorization': `Bearer ${token}` })
+    },
+    ...(body && { body: JSON.stringify(body) })
+});
+
+export const fetchFromAPI = async ({ endpoint, method, body, token }) => {
+    try {
+        const result = await fetch(
+            getURL(endpoint),
+            getOptions(method, body, token),
+        );
+        const response = await result.json();
+        if (response.error) throw response.error
+        return response?.data;
+    } catch (err) {
+        console.error(err)
+    }
+}
