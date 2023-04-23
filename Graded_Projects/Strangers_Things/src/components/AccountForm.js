@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { useParams } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 
 import { fetchFromAPI } from "../utilities/apiClient";
 
-const AccountForm = ({ setToken }) => {
+const AccountForm = ({ token, setToken }) => {
+    const navigate = useNavigate();
     const params = useParams()
     const { actionType } = params;
     console.log(actionType)
@@ -28,14 +28,16 @@ const AccountForm = ({ setToken }) => {
             body: requestBody,
         })
 
-        console.log(data);
-        // const options = {
-        //     method: "POST",
-        //     headers: {
-        //         'Content-Type': 'application/json'
-        //     },
-        //     body: JSON.stringify(requestBody)
-        // }
+        // console.log(`${data.message}: TOKEN ${data.token}`);
+        // setToken(data.token)
+
+        if (data.token) {
+            setUsername('');
+            setPassword('');
+            setToken(data.token);
+            navigate('/');
+        }
+        
         /*
         create an api call that will POST the user's information to the server 
         should return a token if successful
@@ -44,15 +46,7 @@ const AccountForm = ({ setToken }) => {
         const res = await fetch(...Post method)
         const result = await fetch
         */
-        // let response;
-        // if (actionType === 'register') {
-        //      response = await fetch(API_URL + API_OBJECTS.Users.register, options);
-        // } else if (actionType === 'login') {
-        //      response = await fetch(API_URL + API_OBJECTS.Users.login, options);
-        // }
-        // const result = await response.json();
-        // console.log(result)
-        // setToken(result?.data?.token)
+
     }
 
     return (
@@ -61,6 +55,7 @@ const AccountForm = ({ setToken }) => {
             <form onSubmit={handleSubmit}>
                 <label htmlFor="username">Username</label>
                 <input
+                    required
                     name="username"
                     type="text"
                     value={username}
@@ -68,6 +63,7 @@ const AccountForm = ({ setToken }) => {
                 />
                 <label htmlFor="password">Password</label>
                 <input
+                    required
                     name="password"
                     type="password"
                     value={password}

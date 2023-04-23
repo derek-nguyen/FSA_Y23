@@ -12,8 +12,7 @@ const API_ENDPOINTS = {
     register: '/users/register',
     login: '/users/login',
     me: '/users/me',
-    getPost: '/posts',
-    postPosts: '/posts',
+    posts: '/posts',
     patchPosts: '/posts/', // need to append POST_ID
     deletePosts: '/posts/', // need to append POST_ID  
 }
