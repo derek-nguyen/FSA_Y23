@@ -21,9 +21,9 @@ const AddPost = ({ fetchPosts, storedToken }) => {
                 }
             }
         });
-        // console.log(`Token State: ${token}`)
-        console.log(`Stored Token: ${storedToken}`)
-        console.log(responseData);
+        
+        // console.log(`Stored Token: ${storedToken}`)
+        // console.log(responseData);
         const { post } = responseData;
         if (post) {
             setTitle('');

@@ -39,6 +39,7 @@ const AccountForm = ({ setToken, handleLogin }) => {
             navigate('/');
         }
         
+        console.log(data)
         /*
         create an api call that will POST the user's information to the server 
         should return a token if successful

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Route, Link, Routes } from "react-router-dom";
 import {
+    UserProfile,
     AccountForm,
     Posts,
     Logout
@@ -10,9 +11,12 @@ import {
 
 const App = () => {
     const [token, setToken] = useState(null);
+    const storedUser = JSON.parse(localStorage.getItem('user'));
     const storedToken = localStorage.getItem('token');
-    // console.log(`Token state: ${token}`);
-    // console.log(`This is your persistent token: ${localStorage.getItem('token')}`);
+    
+    // Continuously check session information of user
+    console.log(`This is your persistent token: ${localStorage.getItem('token')}`);
+    console.log(storedUser)
 
     const handleLogin = (storedToken) => {
         localStorage.setItem('token',storedToken);
@@ -21,6 +25,7 @@ const App = () => {
     const handleLogout = () => {
         setToken(null);
         localStorage.removeItem('token');
+        localStorage.removeItem('user');
     }
 
     useEffect(() => {
@@ -61,7 +66,8 @@ const App = () => {
                     </>
                 } />
                 <Route path="/profile" element={
-                    <h1>Here's your profile</h1>
+                    // <h1>Here's your profile</h1>
+                    <UserProfile storedToken={storedToken}/>
                 } />
                 {/* <Route path="/login" element={
                     <h1>Login Page</h1>
