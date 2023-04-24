@@ -3,7 +3,7 @@ import { useParams, Link, useNavigate } from "react-router-dom";
 
 import { fetchFromAPI } from "../utilities/apiClient";
 
-const AccountForm = ({ token, setToken }) => {
+const AccountForm = ({ setToken, handleLogin }) => {
     const navigate = useNavigate();
     const params = useParams()
     const { actionType } = params;
@@ -35,6 +35,7 @@ const AccountForm = ({ token, setToken }) => {
             setUsername('');
             setPassword('');
             setToken(data.token);
+            handleLogin(data.token);
             navigate('/');
         }
         

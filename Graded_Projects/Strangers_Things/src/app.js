@@ -9,18 +9,24 @@ import {
 // Route for /posts, /profile, /login, /register
 
 const App = () => {
-    // Will need to useEffect with the [token] 
-    const [token, setToken] = useState(null)
-    console.log(token)
+    const [token, setToken] = useState(null);
+    const storedToken = localStorage.getItem('token');
+    // console.log(`Token state: ${token}`);
+    // console.log(`This is your persistent token: ${localStorage.getItem('token')}`);
 
+    const handleLogin = (storedToken) => {
+        localStorage.setItem('token',storedToken);
+    }
+    
     const handleLogout = () => {
-        setToken(null)
+        setToken(null);
+        localStorage.removeItem('token');
     }
 
     useEffect(() => {
         // console.log("TOKEN: " + token)
         // setting dependency with token will refresh page when a token is created
-    }, [token])
+    }, [storedToken, token])
 
     return (
         <>
@@ -31,7 +37,7 @@ const App = () => {
                 <Link to="/">HOME</Link>
                 <Link to="/posts">POSTS</Link>
                 <Link to="/profile">PROFILE</Link>
-                {token
+                {storedToken
                     ?
                     <Link
                         to="/account/logout"
@@ -51,7 +57,7 @@ const App = () => {
                 <Route path="/posts" element={
                     // Will replace this h1 tag with the component that renders all posts
                     <>
-                        <Posts token={token} />
+                        <Posts token={token} storedToken={storedToken}/>
                     </>
                 } />
                 <Route path="/profile" element={
@@ -62,7 +68,7 @@ const App = () => {
                 } /> */}
                 <Route path="/account/:actionType" element={
                     <>
-                        <AccountForm setToken={setToken} token={token} />
+                        <AccountForm setToken={setToken} handleLogin={handleLogin} />
                     </>
                 } />
                 <Route path="/account/logout" element={

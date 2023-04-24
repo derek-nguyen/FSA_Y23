@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { fetchFromAPI } from "../utilities/apiClient";
 import AddPost from "./AddPost.js";
-import { Link } from "react-router-dom";
 
 const Posts = (props) => {
-    const { token } = props;
+    const { storedToken } = props;
     const [posts, setPosts] = useState([]);
 
     // Fetches all posts in the server
@@ -12,7 +11,7 @@ const Posts = (props) => {
         try {
             const data = await fetchFromAPI({
                 endpoint: 'posts',
-                token
+                token: storedToken
             })
 
             if (data?.posts) {
@@ -22,23 +21,17 @@ const Posts = (props) => {
             console.error(err)
         }
     }
-
+    
     useEffect(() => {
         fetchPosts();
     }, [])
     
-    // console.log(token)
-    
+    // console.log(storedToken)
     return (
         <>
             <h1>Posts</h1>
-            {token && <AddPost token={token} fetchPosts={fetchPosts}/>}
-                {/* <>
-                    <AddPost token={token} fetchPosts={fetchPosts} />
-                    <Link to={'/posts/add'}>Add Post</Link>
-                </>
-            } */}
-            {/* <AddPost token={token} fetchPosts={fetchPosts}/> */}
+            {storedToken && <AddPost storedToken={storedToken} fetchPosts={fetchPosts}/>}
+                
             <div>
                 {posts
                     ? posts.map(

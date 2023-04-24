@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { fetchFromAPI } from "../utilities/apiClient";
 
 
-const AddPost = ({ token, fetchPosts }) => {
+const AddPost = ({ fetchPosts, storedToken }) => {
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
     const [price, setPrice] = useState('')
@@ -12,7 +12,7 @@ const AddPost = ({ token, fetchPosts }) => {
         const responseData = await fetchFromAPI({
             endpoint: 'posts',
             method: 'post',
-            token,
+            token: storedToken,
             body: {
                 post: {
                     title,
@@ -21,6 +21,8 @@ const AddPost = ({ token, fetchPosts }) => {
                 }
             }
         });
+        // console.log(`Token State: ${token}`)
+        console.log(`Stored Token: ${storedToken}`)
         console.log(responseData);
         const { post } = responseData;
         if (post) {
