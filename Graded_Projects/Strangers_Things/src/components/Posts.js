@@ -42,7 +42,7 @@ const Posts = (props) => {
                                     <h4>Title: {title}</h4>
                                     <p>Price: {price}</p>
                                     <p>Description: {description}</p>
-                                    {isAuthor ? < DeletePost post_id={_id}/> : ""}
+                                    {isAuthor ? < DeletePost post_id={_id} storedToken={storedToken} fetchPosts={fetchPosts} /> : ""}
                                 </div>
                             </React.Fragment>
                         )

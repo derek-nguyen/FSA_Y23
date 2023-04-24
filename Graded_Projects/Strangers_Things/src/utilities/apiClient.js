@@ -17,13 +17,16 @@ const API_ENDPOINTS = {
     deletePosts: '/posts/', // need to append POST_ID  
 }
 
-const getURL = (endpoint) => {
-    const path = API_ENDPOINTS[endpoint];
+const getURL = (endpoint, postId) => {
+    let path = API_ENDPOINTS[endpoint];
 
     if (!path) {
         throw new Error('Invalid API endpoint specified');
     }
 
+    if (endpoint === 'deletePosts' && postId) {
+        path += postId;
+    }
     return BASE_API_URL + path;
 }
 
@@ -36,10 +39,10 @@ const getOptions = (method, body, token) => ({
     ...(body && { body: JSON.stringify(body) })
 });
 
-export const fetchFromAPI = async ({ endpoint, method, body, token }) => {
+export const fetchFromAPI = async ({ endpoint, method, body, token}, postId) => {
     try {
         const result = await fetch(
-            getURL(endpoint),
+            getURL(endpoint, postId),
             getOptions(method, body, token),
         );
         const response = await result.json();
