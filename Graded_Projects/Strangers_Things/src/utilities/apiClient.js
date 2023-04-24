@@ -26,7 +26,7 @@ const getURL = (endpoint, postId) => {
 
     if (endpoint === 'deletePosts' && postId) {
         path += postId;
-    }
+    } 
     return BASE_API_URL + path;
 }
 

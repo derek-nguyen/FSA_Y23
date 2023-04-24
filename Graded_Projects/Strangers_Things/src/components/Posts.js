@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
+import { Routes, Route, Link } from "react-router-dom";
 import { fetchFromAPI } from "../utilities/apiClient";
 import AddPost from "./AddPost.js";
 import DeletePost from "./DeletePost";
+import SendMessage from "./SendMessage";
 
 const Posts = (props) => {
     const { storedToken } = props;
@@ -43,6 +45,11 @@ const Posts = (props) => {
                                     <p>Price: {price}</p>
                                     <p>Description: {description}</p>
                                     {isAuthor ? < DeletePost post_id={_id} storedToken={storedToken} fetchPosts={fetchPosts} /> : ""}
+                                    {!isAuthor
+                                        ? <SendMessage post_id={_id} storedToken={storedToken}/>
+                                        : <span></span>
+
+                                    }
                                 </div>
                             </React.Fragment>
                         )

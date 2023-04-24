@@ -11,12 +11,13 @@ import {
 
 const App = () => {
     const [token, setToken] = useState(null);
-    const storedUser = JSON.parse(localStorage.getItem('user'));
+
+    // const storedUser = JSON.parse(localStorage.getItem('user'));
     const storedToken = localStorage.getItem('token');
     
     // Continuously check session information of user
     console.log(`This is your persistent token: ${localStorage.getItem('token')}`);
-    console.log(storedUser)
+    // console.log(storedUser)
 
     const handleLogin = (storedToken) => {
         localStorage.setItem('token',storedToken);
@@ -60,7 +61,6 @@ const App = () => {
                     <h1>Welcome to Strangers Things</h1>
                 } />
                 <Route path="/posts" element={
-                    // Will replace this h1 tag with the component that renders all posts
                     <>
                         <Posts token={token} storedToken={storedToken}/>
                     </>
