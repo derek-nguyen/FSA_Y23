@@ -4,25 +4,42 @@ import {
     UserProfile,
     AccountForm,
     Posts,
+    PostDetails,
     Logout
 } from "./components"
+import { fetchFromAPI } from '../src/utilities/apiClient.js'
 
 // Route for /posts, /profile, /login, /register
 
 const App = () => {
     const [token, setToken] = useState(null);
+    const [posts, setPosts] = useState([])
 
-    // const storedUser = JSON.parse(localStorage.getItem('user'));
     const storedToken = localStorage.getItem('token');
-    
+
     // Continuously check session information of user
-    console.log(`This is your persistent token: ${localStorage.getItem('token')}`);
-    // console.log(storedUser)
+    // console.log(`This is your persistent token: ${localStorage.getItem('token')}`);
+
+    // Fetches all posts in the server
+    const fetchPosts = async () => {
+        try {
+            const data = await fetchFromAPI({
+                endpoint: 'posts',
+                token: storedToken
+            })
+
+            if (data?.posts) {
+                setPosts(data.posts)
+            }
+        } catch (err) {
+            console.error(err)
+        }
+    }
 
     const handleLogin = (storedToken) => {
-        localStorage.setItem('token',storedToken);
+        localStorage.setItem('token', storedToken);
     }
-    
+
     const handleLogout = () => {
         setToken(null);
         localStorage.removeItem('token');
@@ -32,6 +49,7 @@ const App = () => {
     useEffect(() => {
         // console.log("TOKEN: " + token)
         // setting dependency with token will refresh page when a token is created
+        fetchPosts();
     }, [storedToken, token])
 
     return (
@@ -60,14 +78,22 @@ const App = () => {
                 <Route exact path="/" element={
                     <h1>Welcome to Strangers Things</h1>
                 } />
-                <Route path="/posts" element={
+                <Route exact path="/posts" element={
                     <>
-                        <Posts token={token} storedToken={storedToken}/>
+                        <Posts token={token} storedToken={storedToken} posts={posts} fetchPosts={fetchPosts} />
                     </>
                 } />
+                <Route path="/posts/:postID" element={
+                    <>
+                        <div>This is the post detail page</div>
+                        <PostDetails />
+                    </>
+                }>
+
+                </Route>
                 <Route path="/profile" element={
                     // <h1>Here's your profile</h1>
-                    <UserProfile storedToken={storedToken}/>
+                    <UserProfile storedToken={storedToken} />
                 } />
                 {/* <Route path="/login" element={
                     <h1>Login Page</h1>
