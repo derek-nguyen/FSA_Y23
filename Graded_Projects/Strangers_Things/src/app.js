@@ -13,7 +13,7 @@ import { fetchFromAPI } from '../src/utilities/apiClient.js'
 
 const App = () => {
     const [token, setToken] = useState(null);
-    const [posts, setPosts] = useState([])
+    const [posts, setPosts] = useState('')
 
     const storedToken = localStorage.getItem('token');
 
@@ -85,8 +85,7 @@ const App = () => {
                 } />
                 <Route path="/posts/:postID" element={
                     <>
-                        <div>This is the post detail page</div>
-                        <PostDetails />
+                        <PostDetails posts={posts}/>
                     </>
                 }>
 
