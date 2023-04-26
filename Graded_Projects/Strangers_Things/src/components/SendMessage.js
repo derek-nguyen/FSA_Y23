@@ -1,38 +1,63 @@
-// import React from "react";
-// import { useNavigate } from "react-router-dom";
-// import { fetchFromAPI } from "../utilities/apiClient"; 
+import React, { useState } from "react";
+import { fetchFromAPI } from "../utilities/apiClient";
 
-// const SendMessage = ({ post_id, storedToken}) => {
-//     const navigate = useNavigate();
+const SendMessage = ({ postItem, storedToken }) => {
+    const [message, setMessage] = useState('');
+    // console.log(typeof message, message)
 
-//     const handleSubmit = async (event) => {
-//         event.preventDefault();
-//         console.log(post_id);
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        // console.log(postItem);
 
-//         // try {
-//         //     const response = await fetchFromAPI({
-//         //         endpoint: 'deletePosts',
-//         //         method: 'delete',
-//         //         token: storedToken
-//         //     }, post_id);
-            
-//         // } catch (err) {
-//         //     console.error(err)
-//         // }
-//     }
-    
-//     // This will take the user to the post's details
-//     const handleClick = () => {
-//         navigate(`/posts/${post_id}`)
-//     }
+        const messageBody = {
+            message: {
+                content: message
+            }
+        }
 
-//     return (
-//         <>
-//             {/* <form onSubmit={handleSubmit}> */}
-//                 <button type="submit" onClick={handleClick}>Send Message</button>
-//             {/* </form> */}
-//         </>
-//     )
-// }
+        if (storedToken) {
+            const response = await fetchFromAPI({
+                endpoint: 'sendMessage',
+                method: 'post',
+                token: storedToken,
+                body: messageBody,
+                // need to set body: message: { content: STRING_MESSAGE_HERE}
+            }, postItem._id);
 
-// export default SendMessage;
+            if (response) {
+                setMessage('')
+                alert(`Message sent successful: ${message}`)
+                console.log(response)
+            }
+        } else {
+            alert('Must log in before sending a message!')
+            setMessage('')
+        }
+
+        // if (response) {
+
+        // }
+    }
+
+
+    return (
+        <>
+            <form onSubmit={handleSubmit}>
+                <div className="message-box">
+                    <label htmlFor="textbox">Send A Message</label>
+                    <br />
+                    <input
+                        name="textbox"
+                        type="text"
+                        value={message}
+                        onChange={event => setMessage(event.target.value)}
+                    >
+                    </input>
+                </div>
+                <button type="submit">Send Message</button>
+            </form>
+        </>
+    )
+}
+
+export default SendMessage;

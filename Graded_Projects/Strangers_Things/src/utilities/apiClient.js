@@ -14,7 +14,8 @@ const API_ENDPOINTS = {
     me: '/users/me',
     posts: '/posts',
     patchPosts: '/posts/', // need to append POST_ID
-    deletePosts: '/posts/', // need to append POST_ID  
+    deletePosts: '/posts/', // need to append POST_ID 
+    sendMessage: '/posts/', // need to append POST_ID + /messages
 }
 
 const getURL = (endpoint, postId) => {
@@ -26,7 +27,10 @@ const getURL = (endpoint, postId) => {
 
     if (endpoint === 'deletePosts' && postId) {
         path += postId;
-    } 
+    } else if (endpoint === 'sendMessage' && postId) {
+        path += postId + '/messages'
+    }
+
     return BASE_API_URL + path;
 }
 
