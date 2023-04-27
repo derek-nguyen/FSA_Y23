@@ -3,6 +3,7 @@
 export { default as AccountForm } from './AccountForm'
 export { default as UserProfile } from './UserProfile'
 export { default as UserPosts } from './UserPosts'
+export { default as UserMessages } from './UserMessages'
 export { default as Posts } from './Posts'
 export { default as PostDetails } from './PostDetails'
 export { default as AddPost } from './AddPost'

@@ -6,17 +6,24 @@ const UserPosts = (props) => {
     // console.log(storedUser)
 
     return (
-        <>  <h2>Your Posts</h2>
+        <>
+            <h2>Your Active Posts</h2>
             {
                 storedUser.posts.map(
-                    ({ _id, title, description, price, createdAt }) => (
+                    ({ _id, title, description, price, active, messages }) => (
                         <>
-                            <div>
-                                <p>Title: {title}</p>
-                                <p>Description: {description}</p>
-                                <p>Price: {price}</p>
-                            </div>
-                            <hr></hr>
+                            {active && (
+                                <>
+                                    <div key={_id}>
+                                        <p>Title: {title}</p>
+                                        <p>Description: {description}</p>
+                                        <p>Price: {price}</p>
+                                        <br />
+                                        <p>Messages received: {messages.length}</p>
+                                    </div>
+                                    <hr />
+                                </>
+                            )}
                         </>
                     )
                 )
