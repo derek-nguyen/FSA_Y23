@@ -45,6 +45,7 @@ const SendMessage = ({ postItem, storedToken }) => {
                     <input
                         name="textbox"
                         type="text"
+                        required
                         value={message}
                         onChange={event => setMessage(event.target.value)}
                     >

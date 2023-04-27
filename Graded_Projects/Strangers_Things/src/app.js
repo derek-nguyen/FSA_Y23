@@ -19,8 +19,8 @@ const App = () => {
     const storedUser = JSON.parse(localStorage.getItem('user'))
 
     // Continuously check session information of user
-    console.log(storedToken)
-    console.log(storedUser)
+    // console.log(storedToken)
+    // console.log(storedUser)
     // console.log(`This is your persistent token: ${localStorage.getItem('token')}`);
 
     // Fetches all posts in the server
@@ -98,9 +98,6 @@ const App = () => {
                     // <h1>Here's your profile</h1>
                     <UserProfile storedToken={storedToken} storedUser={storedUser}/>
                 } />
-                {/* <Route path="/login" element={
-                    <h1>Login Page</h1>
-                } /> */}
                 <Route path="/account/:actionType" element={
                     <>
                         <AccountForm setToken={setToken} handleLogin={handleLogin} />
