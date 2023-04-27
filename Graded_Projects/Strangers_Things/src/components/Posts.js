@@ -7,29 +7,7 @@ import DeletePost from "./DeletePost";
 const Posts = (props) => {
     const navigate = useNavigate();
     const { storedToken, posts, fetchPosts } = props;
-    // const [posts, setPosts] = useState([]);
 
-    // Fetches all posts in the server
-    // const fetchPosts = async () => {
-    //     try {
-    //         const data = await fetchFromAPI({
-    //             endpoint: 'posts',
-    //             token: storedToken
-    //         })
-
-    //         if (data?.posts) {
-    //             setPosts(data.posts)
-    //         }
-    //     } catch (err) {
-    //         console.error(err)
-    //     }
-    // }
-
-    // useEffect(() => {
-    //     fetchPosts();
-    // }, [])
-
-    // console.log(storedToken)
     return (
         <>
             <h1>Posts</h1>

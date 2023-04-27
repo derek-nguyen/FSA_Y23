@@ -33,10 +33,6 @@ const SendMessage = ({ postItem, storedToken }) => {
             alert('Must log in before sending a message!')
             setMessage('')
         }
-
-        // if (response) {
-
-        // }
     }
 
 

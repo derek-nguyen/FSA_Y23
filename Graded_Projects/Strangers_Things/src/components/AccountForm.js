@@ -28,18 +28,23 @@ const AccountForm = ({ setToken, handleLogin }) => {
             body: requestBody,
         })
 
+        const userData = await fetchFromAPI({
+            endpoint: 'me',
+            token: data.token,
+        })
         // console.log(`${data.message}: TOKEN ${data.token}`);
         // setToken(data.token)
+        // console.log(userData)
 
-        if (data.token) {
+        if (data.token && userData) {
             setUsername('');
             setPassword('');
             setToken(data.token);
-            handleLogin(data.token);
+            handleLogin(data.token, userData);
             navigate('/');
         }
         
-        console.log(data)
+        // console.log(data)
         /*
         create an api call that will POST the user's information to the server 
         should return a token if successful
