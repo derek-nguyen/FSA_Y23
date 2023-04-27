@@ -5,7 +5,8 @@ import {
     AccountForm,
     Posts,
     PostDetails,
-    Logout
+    Logout,
+    SearchPost
 } from "./components"
 import { fetchFromAPI } from '../src/utilities/apiClient.js'
 
@@ -14,6 +15,7 @@ import { fetchFromAPI } from '../src/utilities/apiClient.js'
 const App = () => {
     const [token, setToken] = useState(null);
     const [posts, setPosts] = useState('')
+    const [searchTerm, setSearchTerm] = useState('')
 
     const storedToken = localStorage.getItem('token');
     const storedUser = JSON.parse(localStorage.getItem('user'))
@@ -84,6 +86,7 @@ const App = () => {
                 } />
                 <Route exact path="/posts" element={
                     <>
+                        <SearchPost searchTerm={searchTerm} setSearchTerm={setSearchTerm} posts={posts} setPosts={posts} fetchPosts={fetchPosts}/>
                         <Posts token={token} storedToken={storedToken} posts={posts} fetchPosts={fetchPosts} />
                     </>
                 } />

@@ -18,6 +18,7 @@ const UserMessages = (props) => {
                                         <p>Created by: {fromUser.username}</p>
                                         <p>Your Message: {content}</p>
                                     </div>
+                                    <br/>
                                     <hr />
                                 </>
                                 : <span></span>

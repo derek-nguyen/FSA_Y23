@@ -1,13 +1,12 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-// import { fetchFromAPI } from "../utilities/apiClient";
 import AddPost from "./AddPost.js";
 import DeletePost from "./DeletePost";
 
 const Posts = (props) => {
     const navigate = useNavigate();
     const { storedToken, posts, fetchPosts } = props;
-
+    
     return (
         <>
             <h1>Posts</h1>
