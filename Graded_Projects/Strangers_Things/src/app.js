@@ -5,8 +5,7 @@ import {
     AccountForm,
     Posts,
     PostDetails,
-    Logout,
-    SearchPost
+    Logout
 } from "./components"
 import { fetchFromAPI } from '../src/utilities/apiClient.js'
 
@@ -86,7 +85,7 @@ const App = () => {
                 } />
                 <Route exact path="/posts" element={
                     <>
-                        <SearchPost searchTerm={searchTerm} setSearchTerm={setSearchTerm} posts={posts} setPosts={posts} fetchPosts={fetchPosts}/>
+                        {/* <SearchPost searchTerm={searchTerm} setSearchTerm={setSearchTerm} posts={posts} setPosts={posts} fetchPosts={fetchPosts}/> */}
                         <Posts token={token} storedToken={storedToken} posts={posts} fetchPosts={fetchPosts} />
                     </>
                 } />

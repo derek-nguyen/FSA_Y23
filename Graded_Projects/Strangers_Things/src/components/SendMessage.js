@@ -27,7 +27,7 @@ const SendMessage = ({ postItem, storedToken }) => {
             if (response) {
                 setMessage('')
                 alert(`Message sent successful: ${message}`)
-                console.log(response)
+                // console.log(response)
             }
         } else {
             alert('Must log in before sending a message!')
