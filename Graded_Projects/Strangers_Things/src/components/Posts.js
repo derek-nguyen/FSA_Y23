@@ -19,14 +19,14 @@ const Posts = (props) => {
                 .filter(post =>
                     post.title.toLowerCase().includes(substring.toLowerCase().trim())
                 );
-            setFilteredPosts(filteredPosts)
-        } else {
-            navigate('/posts')
-            setFilteredPosts(posts)
-        }
+            setFilteredPosts(filteredPosts.length ? filteredPosts : posts);
+        } 
+        // else {
+        //     setFilteredPosts(posts);
+        // }
     }
 
-
+    console.log(posts)
 
     return (
         <>
@@ -41,7 +41,7 @@ const Posts = (props) => {
             />
 
             <div>
-                {filteredPosts.length
+                {filteredPosts
                     ? filteredPosts.map(
                         ({ _id, title, price, description, isAuthor }, idx) => (
                             <React.Fragment key={_id}>
@@ -62,7 +62,8 @@ const Posts = (props) => {
                                 <hr />
                             </React.Fragment>
                         )
-                    ) : <strong>No posts to display</strong>
+                    ) 
+                    : <span>No post to show</span>
                 }
             </div >
 

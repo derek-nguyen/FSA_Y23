@@ -14,7 +14,6 @@ import { fetchFromAPI } from '../src/utilities/apiClient.js'
 const App = () => {
     const [token, setToken] = useState(null);
     const [posts, setPosts] = useState('')
-    const [searchTerm, setSearchTerm] = useState('')
 
     const storedToken = localStorage.getItem('token');
     const storedUser = JSON.parse(localStorage.getItem('user'))
