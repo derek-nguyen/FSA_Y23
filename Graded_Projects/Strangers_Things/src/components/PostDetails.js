@@ -5,7 +5,7 @@ import SendMessage from "./SendMessage";
 const PostDetails = (props) => {
     const navigate = useNavigate();
     const params = useParams();
-    const { posts, storedToken } = props;
+    const { posts, storedToken, token } = props;
     const { postID } = params;
 
     // Changing posts object to array to so we can use .find
@@ -36,7 +36,8 @@ const PostDetails = (props) => {
                     <h4>Title: {postItem.title}</h4>
                     <p>Price: {postItem.price}</p>
                     <p>Description: {postItem.description}</p>
-                    <SendMessage postItem={postItem} storedToken={storedToken}/>
+                    {token || storedToken ? <SendMessage postItem={postItem} storedToken={storedToken}/> : <span></span>}
+                    
                 </>
                 : <span></span>
             }

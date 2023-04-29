@@ -20,14 +20,13 @@ const Posts = (props) => {
                     post.title.toLowerCase().includes(substring.toLowerCase().trim())
                 );
             setFilteredPosts(filteredPosts.length ? filteredPosts : posts);
-        } 
-        // else {
-        //     setFilteredPosts(posts);
-        // }
+        } else {
+            setFilteredPosts(posts)
+        }
     }
 
-    console.log(posts)
-
+    // console.log(filteredPosts)
+    // console.log(searchTerm)
     return (
         <>
             <h1>Posts</h1>
@@ -41,8 +40,29 @@ const Posts = (props) => {
             />
 
             <div>
-                {filteredPosts
+                {filteredPosts && filteredPosts.length > 0
                     ? filteredPosts.map(
+                        ({ _id, title, price, description, isAuthor }, idx) => (
+                            <React.Fragment key={_id}>
+                                <div>
+                                    <h4>Title: {title}</h4>
+                                    <p>Price: {price}</p>
+                                    <p>Description: {description}</p>
+                                    {isAuthor ? < DeletePost post_id={_id} storedToken={storedToken} fetchPosts={fetchPosts} /> : ""}
+                                    {!isAuthor
+                                        ? <button onClick={() => {
+                                            // console.log(_id)
+                                            const post_id = _id;
+                                            navigate(`/posts/${post_id}`)
+                                        }}>View Post</button>
+                                        : <span></span>
+                                    }
+                                </div>
+                                <hr />
+                            </React.Fragment>
+                        )
+                    ) 
+                    : posts && posts.length > 0 ? posts.map(
                         ({ _id, title, price, description, isAuthor }, idx) => (
                             <React.Fragment key={_id}>
                                 <div>

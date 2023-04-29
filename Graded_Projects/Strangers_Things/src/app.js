@@ -90,7 +90,7 @@ const App = () => {
                 } />
                 <Route path="/posts/:postID" element={
                     <>
-                        <PostDetails posts={posts} storedToken={storedToken}/>
+                        <PostDetails posts={posts} storedToken={storedToken} token={token}/>
                     </>
                 }>
 
