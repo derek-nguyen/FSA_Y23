@@ -27,7 +27,7 @@ const AddPost = ({ fetchPosts, storedToken }) => {
             setTitle('');
             setDescription('');
             setPrice('')
-            await fetchPosts();
+            fetchPosts();
         }
     }
 

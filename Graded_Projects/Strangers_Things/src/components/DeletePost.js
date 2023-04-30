@@ -23,7 +23,7 @@ const DeletePost = ({ post_id, storedToken, fetchPosts }) => {
     return (
         <>
             <form onSubmit={handleSubmit}>
-                <button className="post-btn" type="submit">Delete</button>
+                <button className="delete-post-btn" type="submit">Delete</button>
             </form>
         </>
     )

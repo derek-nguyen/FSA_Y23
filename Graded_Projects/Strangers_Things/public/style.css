@@ -51,6 +51,34 @@
     text-overflow: ellipsis;
     text-align: center;
     cursor: pointer;
+    background-color: #33b249;
+    color: white;
+    border: none;
+}
+
+.post-btn:hover {
+    background-color: #80c48c;
+}
+
+.delete-post-btn {
+    display: inline-block;
+    min-width: 100px;
+    max-width: 100px;
+    height: 30px;
+    margin-top: 2vh;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-align: center;
+    cursor: pointer;
+    background-color: #ED2B2A;
+    color: white;
+    border: none;
+}
+
+.delete-post-btn:hover {
+    background-color: #F15A59;
+    color: white;
 }
 
 .search-bar {
@@ -100,79 +128,41 @@
     font-size: 20px;
 }
 
-
-/* .auth-container {
-    max-width: 500px;
-    margin: 0 auto;
-    padding: 1rem;
-    text-align: center;
-  }
-  
-  .auth-container > h1 {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-  }
-  
-  .auth-container > form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .auth-container > label {
-    display: block;
-    margin-bottom: 0.5rem;
-  }
-  
-  .auth-container > input {
-    width: 100%;
-    padding: 0.5rem;
-    margin-bottom: 1rem;
-    font-size: 1rem;
-  }
-  
-  
-  .auth-container a {
-    display: block;
-    margin-top: 1rem;
-    text-align: center;
-  } */
-  
-  .auth-container {
+.auth-container {
     max-width: 500px;
     margin: 10vh auto;
     padding: 1rem;
     border: 1px solid #ccc;
     border-radius: 4px;
     text-align: center;
-  }
-  
-  .auth-container h1 {
+}
+
+.auth-container h1 {
     font-size: 2rem;
     margin-bottom: 1rem;
-  }
-  
-  .auth-container form {
+}
+
+.auth-container form {
     display: flex;
     flex-direction: column;
     align-items: center;
-  }
-  
-  .auth-container label {
+}
+
+.auth-container label {
     display: block;
     margin-bottom: 0.5rem;
-  }
-  
-  .auth-container input {
+}
+
+.auth-container input {
     width: 100%;
     padding: 0.5rem;
     margin-bottom: 1rem;
     border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 1rem;
-  }
-  
-  .auth-container button {
+}
+
+.auth-container button {
     background-color: #394867;
     color: #fff;
     border: none;
@@ -180,15 +170,14 @@
     padding: 0.5rem 1rem;
     font-size: 1rem;
     cursor: pointer;
-  }
-  
-  .auth-container button:hover {
+}
+
+.auth-container button:hover {
     background-color: #9BA4B5;
-  }
-  
-  .auth-container a {
+}
+
+.auth-container a {
     display: block;
     margin-top: 1rem;
     text-align: center;
-  }
-  
+}
