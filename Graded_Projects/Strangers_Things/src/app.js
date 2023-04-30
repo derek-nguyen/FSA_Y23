@@ -48,6 +48,7 @@ const App = () => {
         setToken(null);
         localStorage.removeItem('token');
         localStorage.removeItem('user');
+        fetchPosts();
     }
 
     useEffect(() => {
@@ -80,7 +81,7 @@ const App = () => {
             </nav>
             <Routes>
                 <Route exact path="/" element={
-                    <h1>Welcome to Strangers Things</h1>
+                    <h1 id="welcome-page">Welcome to Stranger's Things</h1>
                 } />
                 <Route exact path="/posts" element={
                     <>

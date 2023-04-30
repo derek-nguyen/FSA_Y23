@@ -5,7 +5,7 @@ const UserMessages = (props) => {
 
     return (
         <>
-            <h2>Your Messages</h2>
+            <h2>Sent Messages</h2>
             {
                 storedUser.messages.map(
                     ({ _id, post, fromUser, content }) => (
@@ -13,7 +13,7 @@ const UserMessages = (props) => {
                             {fromUser._id === storedUser._id 
                                 ?
                                 <>
-                                    <div key={_id}>
+                                    <div key={_id} className="posts">
                                         <p>Post: {post.title}</p>
                                         <p>Created by: {fromUser.username}</p>
                                         <p>Your Message: {content}</p>

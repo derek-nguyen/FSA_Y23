@@ -6,7 +6,7 @@ const UserPosts = (props) => {
     // console.log(storedUser)
 
     return (
-        <>
+        <> 
             <h2>Your Active Posts</h2>
             {
                 storedUser.posts.map(
@@ -14,7 +14,7 @@ const UserPosts = (props) => {
                         <>
                             {active && (
                                 <>
-                                    <div key={_id}>
+                                    <div key={_id} className="posts">
                                         <p>Title: {title}</p>
                                         <p>Description: {description}</p>
                                         <p>Price: {price}</p>

@@ -33,11 +33,12 @@ const PostDetails = (props) => {
             {postItem
                 ?
                 <>
-                    <h4>Title: {postItem.title}</h4>
-                    <p>Price: {postItem.price}</p>
-                    <p>Description: {postItem.description}</p>
-                    {token || storedToken ? <SendMessage postItem={postItem} storedToken={storedToken}/> : <span></span>}
-                    
+                    <div className="posts">
+                        <h4>Title: {postItem.title}</h4>
+                        <p>Price: {postItem.price}</p>
+                        <p>Description: {postItem.description}</p>
+                        {token || storedToken ? <SendMessage postItem={postItem} storedToken={storedToken} /> : <span></span>}
+                    </div>
                 </>
                 : <span></span>
             }

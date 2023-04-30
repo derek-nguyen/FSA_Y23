@@ -38,7 +38,7 @@ const SendMessage = ({ postItem, storedToken }) => {
 
     return (
         <>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className="send-message">
                 <div className="message-box">
                     <label htmlFor="textbox">Send A Message</label>
                     <br />
@@ -51,7 +51,7 @@ const SendMessage = ({ postItem, storedToken }) => {
                     >
                     </input>
                 </div>
-                <button type="submit">Send Message</button>
+                <button type="submit" className="post-btn">Send Message</button>
             </form>
         </>
     )
