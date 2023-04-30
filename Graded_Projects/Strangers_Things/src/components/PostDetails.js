@@ -17,7 +17,6 @@ const PostDetails = (props) => {
     useEffect(() => {
         const postItem = arrayPosts.find(postItem => postItem._id == postID)
         setPostItem(postItem)
-        // console.log(postItem)
     }, [arrayPosts, postID])
 
     // if postItem disappears for some reason reroute them back to posts
@@ -25,7 +24,6 @@ const PostDetails = (props) => {
         if (!postItem) {
             navigate('/posts')
         }
-        // console.log(postItem)
     }, [])
 
     return (

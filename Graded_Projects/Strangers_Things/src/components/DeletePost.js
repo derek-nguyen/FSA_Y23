@@ -5,7 +5,6 @@ const DeletePost = ({ post_id, storedToken, fetchPosts }) => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        console.log(post_id);
 
         try {
             const response = await fetchFromAPI({

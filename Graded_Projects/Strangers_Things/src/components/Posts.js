@@ -25,8 +25,6 @@ const Posts = (props) => {
         }
     }
 
-    // console.log(filteredPosts)
-    // console.log(searchTerm)
     return (
         <>
             <h1 className="post-page-title">Posts</h1>
@@ -52,7 +50,6 @@ const Posts = (props) => {
                                     {isAuthor ? < DeletePost post_id={_id} storedToken={storedToken} fetchPosts={fetchPosts} /> : ""}
                                     {!isAuthor
                                         ? <button className="post-btn" onClick={() => {
-                                            // console.log(_id)
                                             const post_id = _id;
                                             navigate(`/posts/${post_id}`)
                                         }}>View Post</button>
@@ -73,7 +70,6 @@ const Posts = (props) => {
                                     {isAuthor ? < DeletePost post_id={_id} storedToken={storedToken} fetchPosts={fetchPosts} /> : ""}
                                     {!isAuthor
                                         ? <button className="post-btn" onClick={() => {
-                                            // console.log(_id)
                                             const post_id = _id;
                                             navigate(`/posts/${post_id}`)
                                         }}>View Post</button>

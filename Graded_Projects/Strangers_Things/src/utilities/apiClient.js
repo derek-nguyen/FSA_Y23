@@ -50,9 +50,11 @@ export const fetchFromAPI = async ({ endpoint, method, body, token}, postId) => 
             getOptions(method, body, token),
         );
         const response = await result.json();
+        
         if (response.error) throw response.error
         return response?.data;
     } catch (err) {
-        console.error(err)
+        console.log(err)
+        alert(`${err.message}`)
     }
 }

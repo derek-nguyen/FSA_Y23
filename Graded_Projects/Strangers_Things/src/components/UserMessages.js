@@ -5,28 +5,30 @@ const UserMessages = (props) => {
 
     return (
         <>
-            <h2>Sent Messages</h2>
-            {
-                storedUser.messages.map(
-                    ({ _id, post, fromUser, content }) => (
-                        <>
-                            {fromUser._id === storedUser._id 
-                                ?
-                                <>
-                                    <div key={_id} className="posts">
-                                        <p>Post: {post.title}</p>
-                                        <p>Created by: {fromUser.username}</p>
-                                        <p>Your Message: {content}</p>
-                                    </div>
-                                    <br/>
-                                    <hr />
-                                </>
-                                : <span></span>
-                            }
-                        </>
+            <div className="user-message-container">
+                <h2 className="user-profile-title">Sent Messages</h2>
+                {
+                    storedUser.messages.map(
+                        ({ _id, post, fromUser, content }) => (
+                            <>
+                                {fromUser._id === storedUser._id
+                                    ?
+                                    <>
+                                        <div key={_id} className="posts">
+                                            <p>Post: {post.title}</p>
+                                            <p>Created by: {fromUser.username}</p>
+                                            <p>Your Message: {content}</p>
+                                        </div>
+                                        <br />
+                                        <hr />
+                                    </>
+                                    : <span></span>
+                                }
+                            </>
+                        )
                     )
-                )
-            }
+                }
+            </div>
         </>
     )
 }

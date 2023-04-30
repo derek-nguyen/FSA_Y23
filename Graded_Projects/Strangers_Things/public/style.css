@@ -16,7 +16,7 @@
     color: white;
 }
 
-#navbar > a {
+#navbar>a {
     color: white;
     text-decoration: none;
 }
@@ -37,7 +37,7 @@
 
 .post-page-title {
     text-align: center;
-    margin: 0 5vh;
+    margin: 3vh;
 }
 
 .post-btn {
@@ -70,15 +70,125 @@
     margin: 2vh 3vh;
 }
 
-.add-post-detail > input {
+.add-post-detail>input {
     margin-left: .5vh;
     margin-right: 2vh;
 }
 
-.add-post-detail > h2 {
+.add-post-detail>h2 {
     margin-bottom: 2vh;
 }
 
 .send-message {
     margin-top: 3vh;
 }
+
+.user-profile-title {
+    margin: 3vh;
+    text-transform: uppercase;
+}
+
+.user-profile-info {
+    margin: 3vh;
+}
+
+.notice {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 20vh;
+    font-size: 20px;
+}
+
+
+/* .auth-container {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 1rem;
+    text-align: center;
+  }
+  
+  .auth-container > h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .auth-container > form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .auth-container > label {
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+  
+  .auth-container > input {
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+  }
+  
+  
+  .auth-container a {
+    display: block;
+    margin-top: 1rem;
+    text-align: center;
+  } */
+  
+  .auth-container {
+    max-width: 500px;
+    margin: 10vh auto;
+    padding: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    text-align: center;
+  }
+  
+  .auth-container h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .auth-container form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .auth-container label {
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+  
+  .auth-container input {
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+  }
+  
+  .auth-container button {
+    background-color: #394867;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+  
+  .auth-container button:hover {
+    background-color: #9BA4B5;
+  }
+  
+  .auth-container a {
+    display: block;
+    margin-top: 1rem;
+    text-align: center;
+  }
+  
