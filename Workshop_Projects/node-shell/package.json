@@ -1,0 +1,16 @@
+{
+  "name": "shell",
+  "version": "1.0.0",
+  "description": "",
+  "main": "bash.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon bash.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "node": "^20.1.0"
+  },
+  "type": "module"
+}
