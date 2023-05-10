@@ -32,13 +32,23 @@ async function updateUser(id, fields = {}) {
 
     try {
         const result = await client.query(`
-        UPDATE users
-        SET ${setString}
-        WHERE id=${id}
-        RETURNING *;
-      `, Object.values(fields));
+            UPDATE users
+            SET ${setString}
+            WHERE id=${id}
+            RETURNING *;
+          `, Object.values(fields));
 
-        return result;
+        //     const { rows: [user] } = await client.query(`
+        //     UPDATE users
+        //     SET ${setString}
+        //     WHERE id=${id}
+        //     RETURNING *;
+        //   `, []);
+
+        const {rows: [user]} = result;
+        // console.log(user)
+        // return result;
+        return user;
     } catch (error) {
         throw error;
     }
@@ -53,6 +63,13 @@ async function getAllUsers() {
     return rows;
 }
 
+async function createPost({
+    authorId,
+    title,
+    content
+}) {
+
+}
 
 module.exports = {
     client,

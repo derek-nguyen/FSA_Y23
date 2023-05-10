@@ -52,6 +52,16 @@ async function createTables() {
         );
         `);
 
+            await client.query(`
+            CREATE TABLE posts (
+                id SERIAL PRIMARY KEY,
+                "authorId" INTEGER REFERENCES users(id) NOT NULL,
+                title VARCHAR(255) NOT NULL,
+                content TEXT NOT NULL,
+                active BOOLEAN DEFAULT true
+            );
+            `);
+
         console.log('Finished building tables!')
     } catch (err) {
         console.error('Error building tables')
@@ -77,15 +87,15 @@ async function testDB() {
         // connect the client to the database, finally
 
         const users = await getAllUsers();
-        console.log('Result:', users);
+        // console.log('Result:', users);
 
         console.log("Calling updateUser on users[0]")
         const updateUserResult = await updateUser(users[0].id, {
             name: "Newname Sogood",
             location: "Lesterville, KY"
-          });
+        });
 
-        console.log('Result: ', updateUserResult)
+        // console.log('Result: ', updateUserResult)
 
         console.log('Finished database tests')
     } catch (err) {
