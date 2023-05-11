@@ -17,9 +17,24 @@ async function createInitialUsers() {
     try {
         console.log('Starting to create users...')
 
-        await createUser({ username: 'albert', password: 'bertie99' });
-        await createUser({ username: 'sandra', password: '2sandy4me' });
-        await createUser({ username: 'glamgal', password: 'soglam' });
+        await createUser({
+            username: 'albert',
+            password: 'bertie99',
+            name: 'Al Bert',
+            location: 'Sidney, Australia'
+        });
+        await createUser({
+            username: 'sandra',
+            password: '2sandy4me',
+            name: 'Just Sandra',
+            location: 'Ain\'t tellin\''
+        });
+        await createUser({
+            username: 'glamgal',
+            password: 'soglam',
+            name: 'Joshua',
+            location: 'Upper East Side'
+        });
 
         console.log('Finished creating users!');
     } catch (err) {
@@ -30,19 +45,31 @@ async function createInitialUsers() {
 
 async function createInitialPosts() {
     try {
-      const [albert, sandra, glamgal] = await getAllUsers();
-  
-      await createPost({
-        authorId: albert.id,
-        title: "First Post",
-        content: "This is my first post. I hope I love writing blogs as much as I love writing them."
-      });
-  
-      // a couple more
+        const [albert, sandra, glamgal] = await getAllUsers();
+
+        await createPost({
+            authorId: albert.id,
+            title: "First Post",
+            content: "This is my first post. I hope I love writing blogs as much as I love writing them."
+        });
+
+        await createPost({
+            authorId: sandra.id,
+            title: "How does this work?",
+            content: "Seriously, does this even do anything?"
+        });
+
+        await createPost({
+            authorId: glamgal.id,
+            title: "Living the Glam Life",
+            content: "Do you even? I swear that half of you are posing."
+        });
+
+        // a couple more
     } catch (error) {
-      throw error;
+        throw error;
     }
-  }
+}
 
 async function dropTables() {
     try {
@@ -73,7 +100,7 @@ async function createTables() {
         );
         `);
 
-            await client.query(`
+        await client.query(`
             CREATE TABLE posts (
                 id SERIAL PRIMARY KEY,
                 "authorId" INTEGER REFERENCES users(id) NOT NULL,
