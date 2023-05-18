@@ -11,6 +11,6 @@ function requireUser(req, res, next) {
     next();
 }
 
-module.export = {
+module.exports = {
     requireUser
 }
