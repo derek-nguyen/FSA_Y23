@@ -76,27 +76,26 @@ async function createPost({
 }
 
 async function updatePost(postId, fields = {}) {
-    // console.log("Updating post with tags ", postId, fields)
-
     const { tags } = fields;
     delete fields.tags;
     // console.log("Deleting existing tags: ", postId, fields)
+    // console.log('Object values: ', ...Object.values(fields));
 
     // build the set string
     const setString = Object.keys(fields).map(
         (key, index) => `"${key}"=$${index + 1}`
     ).join(', ');
+    // console.log('setString: Sets column and value: ', setString);
 
-    console.log(setString.length);
-
+    // Object.keys(fields).length + 1 is used to reference the 2nd element in the array from the 2nd argument
     try {
         if (setString.length > 0) {
             await client.query(`
             UPDATE posts
             SET ${setString}
-            WHERE id=$${setString.length + 1}
+            WHERE id=$${Object.keys(fields).length + 1}
             RETURNING *;
-          `, [...Object.values(fields), postId]);
+            `,[...Object.values(fields),postId]);
         }
 
         // return early if there's no tags to update
@@ -124,6 +123,7 @@ async function updatePost(postId, fields = {}) {
         return await getPostById(postId);
         // return post;
     } catch (error) {
+        console.log('error updating post')
         throw error;
     }
 }
@@ -169,6 +169,13 @@ async function getPostById(postId) {
             FROM posts
             WHERE id = $1
         `, [postId]);
+
+        if (!post) {
+            throw {
+                name: "PostNotFoundError",
+                message: "Could not find a post with that postId"
+            };
+        }
 
         const { rows: tags } = await client.query(`
             SELECT tags.*

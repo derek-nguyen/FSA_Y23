@@ -48,14 +48,36 @@ const {
     getAllPosts,
     updatePost,
     getPostById
-} = require('../db')
+} = require('../db');
+const apiRouter = require('.');
 
-postsRouter.get('/', async (req, res) => {
-    const posts = await getAllPosts();
 
-    res.send({
-        posts: [posts]
-    });
+// Gets all active posts
+postsRouter.get('/', async (req, res, next) => {
+    try {
+        const allPosts = await getAllPosts();
+        const posts = allPosts.filter(post => {
+            
+            // post is active and doesn't matter who it belongs to
+            if (post.active) {
+                return true;
+            }
+
+            // post is active and belongs to user making the request
+            if (post.active && post.author.id === req.user.id) {
+                return true;
+            }
+
+        })
+    
+        res.send({
+            posts: [posts]
+        });
+
+    } catch ({ name, message }) {
+        next({ name, message })
+    }
+
 
 });
 
@@ -63,7 +85,7 @@ postsRouter.patch('/:postId', requireUser, async (req, res, next) => {
     const { postId } = req.params;
     const { title, content, tags } = req.body;
 
-    console.log("postId: ", postId,"postTitle: ", title,"postContent: ", content,tags);
+    // console.log("postId: ", postId, "postTitle: ", title, "postContent: ", content, tags);
     const updateFields = {};
 
     if (tags && tags.length > 0) {
@@ -81,12 +103,11 @@ postsRouter.patch('/:postId', requireUser, async (req, res, next) => {
     try {
         const originalPost = await getPostById(postId);
         // console.log(originalPost);
-        console.log(updateFields);
+        // console.log(updateFields);
         // Ensuring post to update is owned by user tryng to update
         if (originalPost.author.id === req.user.id) {
             const updatedPost = await updatePost(postId, updateFields);
 
-            console.log(updatePost);
             res.send({ post: updatedPost });
         } else {
             next({
@@ -95,12 +116,36 @@ postsRouter.patch('/:postId', requireUser, async (req, res, next) => {
             });
         }
 
-    } catch {
-        console.log('Error sending patch request')
+    } catch ({ name, message }) {
+        next({ name, message })
     }
 
-    
 });
+
+postsRouter.delete('/:postId', requireUser, async (req, res, next) => {
+    try {
+        const post = await getPostById(req.params.postId);
+
+        if (post && post.author.id === req.user.id) {
+            const updatedPost = await updatePost(post.id, { active: false });
+
+            res.send({ post: updatedPost });
+        } else {
+            next(post ? {
+                name: "UnauthorizedUserError",
+                message: "You cannot delete a post which is not yours"
+            } : {
+                name: "PostNotFoundError",
+                message: "That post does not exists"
+            });
+        }
+
+    } catch ({ name, message }) {
+        next({ name, message });
+    }
+})
+
+// curl http://localhost:3000/api/posts/1 -X DELETE -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsYmVydCIsInBhc3N3b3JkIjoiYmVydGllOTkiLCJpZCI6MSwiaWF0IjoxNjg0NDUyODg3fQ.t6GjazdmrJOVgLdYOKmLU_Jy2Z-VGZTdjI290d_iSXg'
 
 
 module.exports = postsRouter;
