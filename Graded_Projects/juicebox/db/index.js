@@ -87,6 +87,8 @@ async function updatePost(postId, fields = {}) {
         (key, index) => `"${key}"=$${index + 1}`
     ).join(', ');
 
+    console.log(setString.length);
+
     try {
         if (setString.length > 0) {
             await client.query(`
@@ -94,7 +96,7 @@ async function updatePost(postId, fields = {}) {
             SET ${setString}
             WHERE id=$${setString.length + 1}
             RETURNING *;
-          `, [...Object.values(fields)], postId);
+          `, [...Object.values(fields), postId]);
         }
 
         // return early if there's no tags to update

@@ -65,7 +65,7 @@ apiRouter.use((error, req, res, next) => {
 module.exports = apiRouter;
 
 // Test Login: curl http://localhost:3000/api/users/login -H "Content-Type: application/json" -X POST -d '{"username": "albert", "password": "bertie99"}'
-// Test authentication: curl http://localhost:3000/api -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsYmVydCIsInBhc3N3b3JkIjoiYmVydGllOTkiLCJpZCI6MSwiaWF0IjoxNjg0MzAzMjU0fQ.6ru2GvxUj96iYDOX4v3ujnBQ9HLEwULrZSpjMRzdogk'
+// Test authentication: curl http://localhost:3000/api/posts -X POST -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsYmVydCIsInBhc3N3b3JkIjoiYmVydGllOTkiLCJpZCI6MSwiaWF0IjoxNjg0MzkyMjE4fQ.X71901BcLrSvKOTckzYC9xHA4QJ3HGFNqSXPctKIKE0'
 
 // Test Register: 
 // # missing a field
