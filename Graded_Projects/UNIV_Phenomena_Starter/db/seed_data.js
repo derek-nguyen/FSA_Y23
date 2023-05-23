@@ -181,7 +181,7 @@ async function testDB() {
     console.log("Getting open reports:\n", await getOpenReports());
     console.log("Closing report with id 1 with correct password", await closeReport(1, "51isTheKey"));
     console.log("Expiring report with id 3", await expireReport(3));
-    console.log("Grabbing all open reports:\n", await getOpenReports());
+    // console.log("Grabbing all open reports:\n", await getOpenReports());
     
     /* Each of these lines should throw an error when uncommented */
     
