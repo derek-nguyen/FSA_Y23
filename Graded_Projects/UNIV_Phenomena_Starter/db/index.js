@@ -31,6 +31,7 @@ async function getOpenReports() {
       WHERE "isOpen" = true;
     `);
 
+    console.log(reports);
     let reportIds = reports.map(report => report.id)
     const setString = '(' + reports.map((_, index) => `$${index + 1}`).join(',') + ')';
 
@@ -38,12 +39,12 @@ async function getOpenReports() {
 
     // then load the comments only for those reports, using a
     // WHERE "reportId" IN () clause
-    const { rows: reportsComment } = await client.query(`
-      SELECT * 
-      FROM reports r
-      JOIN comments c on c."reportId" = r.id
-      WHERE c."reportId" IN ${setString};
-    `, reportIds);
+    // const { rows: reportsComment } = await client.query(`
+    //   SELECT * 
+    //   FROM reports r
+    //   JOIN comments c on c."reportId" = r.id
+    //   WHERE c."reportId" IN ${setString};
+    // `, reportIds);
 
     // console.log(reportsComment)
     // then, build two new properties on each report:
@@ -53,14 +54,14 @@ async function getOpenReports() {
     //    you can use Date.parse(report.expirationDate) < new Date()
     // also, remove the password from all reports
 
-    const updatedReports = reportsComment.map((reportObj) => {
-      delete reportObj.password
-      return {
-        ...reportObj,
-        comments: [reportObj.content],
-        isExpired: Date.parse(reportObj.expirationDate) < new Date()
-      }
-    });
+    // const updatedReports = reportsComment.map((reportObj) => {
+    //   delete reportObj.password
+    //   return {
+    //     ...reportObj,
+    //     comments: [reportObj.content],
+    //     isExpired: Date.parse(reportObj.expirationDate) < new Date()
+    //   }
+    // });
 
 
     // console.log('Multiple reports, ',updatedReports);
