@@ -31,7 +31,7 @@ async function getOpenReports() {
       WHERE "isOpen" = true;
     `);
 
-    console.log(reports);
+    // console.log(reports);
     let reportIds = reports.map(report => report.id)
     const setString = '(' + reports.map((_, index) => `$${index + 1}`).join(',') + ')';
 
@@ -39,32 +39,27 @@ async function getOpenReports() {
 
     // then load the comments only for those reports, using a
     // WHERE "reportId" IN () clause
-    // const { rows: reportsComment } = await client.query(`
-    //   SELECT * 
-    //   FROM reports r
-    //   JOIN comments c on c."reportId" = r.id
-    //   WHERE c."reportId" IN ${setString};
-    // `, reportIds);
+    const { rows: comments } = await client.query(`
+      SELECT * 
+      FROM comments c
+      WHERE c."reportId" IN ${setString};
+    `, reportIds);
 
-    // console.log(reportsComment)
-    // then, build two new properties on each report:
     // .comments for the comments which go with it
     //    it should be an array, even if there are none
+    const commentsByReportId = comments.reduce((acc, comment) => {
+      acc[comment.reportId] = acc[comment.reportId] || [];
+      acc[comment.reportId].push(comment);
+      return acc;
+    }, {});
+
     // .isExpired if the expiration date is before now
     //    you can use Date.parse(report.expirationDate) < new Date()
-    // also, remove the password from all reports
-
-    // const updatedReports = reportsComment.map((reportObj) => {
-    //   delete reportObj.password
-    //   return {
-    //     ...reportObj,
-    //     comments: [reportObj.content],
-    //     isExpired: Date.parse(reportObj.expirationDate) < new Date()
-    //   }
-    // });
-
-
-    // console.log('Multiple reports, ',updatedReports);
+    reports.forEach((report) => {
+      report.comments = commentsByReportId[report.id] || [];
+      report.isExpired = Date.parse(report.expirationDate) < Date.now();
+      delete report.password;
+    });
     return reports;
 
 
@@ -127,9 +122,14 @@ async function createReport(reportFields) {
 async function _getReport(reportId) {
   try {
     // SELECT the report with id equal to reportId
-
+    const { rows: [report] } = await client.query(`
+      SELECT id
+      FROM reports 
+      WHERE id = $1;
+    `, [reportId]);
 
     // return the report
+    return report
 
 
   } catch (error) {
@@ -150,22 +150,41 @@ async function _getReport(reportId) {
 async function closeReport(reportId, password) {
   try {
     // First, actually grab the report with that id
-
+    const { rows: [report] } = await client.query(`
+      SELECT *
+      FROM reports
+      WHERE id = $1;
+    `, [reportId])
 
     // If it doesn't exist, throw an error with a useful message
-
+    if (!report) {
+      throw new Error('Report does not exist with that id')
+    }
 
     // If the passwords don't match, throw an error
-
+    if (report.password !== password) {
+      throw new Error('Password incorrect for this report, please try again')
+    }
 
     // If it has already been closed, throw an error with a useful message
-
+    if (!report.isOpen) {
+      throw new Error('This report has already been closed')
+    } else {
+      report.isOpen = false;
+    }
 
     // Finally, update the report if there are no failures, as above
-
+    const result = await client.query(`
+      UPDATE reports
+      SET "isOpen" = false
+      WHERE id = $1
+      RETURNING *
+    `, [reportId]);
 
     // Return a message stating that the report has been closed
-
+    if (result) {
+      return { message: 'Report successfully closed!' }
+    }
 
   } catch (error) {
     throw error;
