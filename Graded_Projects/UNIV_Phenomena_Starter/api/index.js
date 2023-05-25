@@ -1,8 +1,14 @@
 // Build an apiRouter using express Router
-
+const express = require('express');
+const apiRouter = express.Router();
 
 // Import the database adapter functions from the db
 
+const {
+    client,
+    getOpenReports,
+    createReport
+} = require('../db')
 
 /**
  * Set up a GET request for /reports
@@ -12,6 +18,17 @@
  * - on success, it should send back an object like { reports: theReports }
  * - on caught error, call next(error)
  */
+
+apiRouter.get('/reports', async (req, res, next) => {
+    try {
+        const theReports = await getOpenReports();
+
+        res.send({ reports: theReports });
+    } catch (err) {
+        next(err)
+    }
+
+});
 
 
 
@@ -24,6 +41,15 @@
  * - on caught error, call next(error)
  */
 
+apiRouter.post('/reports', async (req, res, next) => {
+    try {
+        const newReport = await createReport(req.body);
+        res.send(newReport);
+
+    } catch (err) {
+        next(err);
+    }
+});
 
 
 /**
@@ -51,3 +77,4 @@
 
 
 // Export the apiRouter
+module.exports = apiRouter
