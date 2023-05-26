@@ -41,24 +41,32 @@ app.use('/api', apiRouter)
 
 const { client } = require('./db')
 
-client.connect();
-
 // Create custom 404 handler that sets the status code to 404.
-app.get('*', (req, res, next) => {
-    res.status(404).send("Oops! Page Not Found")
-})
+app.use((req, res, next) => {
+    res.status(404).send("Sorry can't find that!")
+  })
 
 // Create custom error handling that sets the status code to 500
 // and returns the error as an object
-app.use((error, req, res, next) => {
-    res.status(500).send({ error })
-})
+// app.use((error, req, res, next) => {
+//     res.status(500).send({ error })
+// })
 
-
+app.use((err, req, res, next) => {
+    console.error(err.stack)
+    res.status(500).send('Something broke!')
+  })
 
 // Start the server listening on port PORT
 // On success, connect to the database
 
-app.listen(PORT, () => {
-    console.log(`Listening on http://localhost:${PORT}`)
-})
+client.connect()
+    .then(() => {
+        app.listen(PORT, () => {
+            console.log(`Listening on http://localhost:${PORT}`)
+        });
+    })
+    .catch(err => {
+        console.error(err);
+    })
+

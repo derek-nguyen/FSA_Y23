@@ -7,7 +7,9 @@ const apiRouter = express.Router();
 const {
     client,
     getOpenReports,
-    createReport
+    createReport,
+    closeReport,
+    createReportComment
 } = require('../db')
 
 /**
@@ -29,7 +31,6 @@ apiRouter.get('/reports', async (req, res, next) => {
     }
 
 });
-
 
 
 /**
@@ -62,6 +63,18 @@ apiRouter.post('/reports', async (req, res, next) => {
  * - on caught error, call next(error)
  */
 
+apiRouter.delete('/reports/:reportId', async (req, res, next) => {
+    try {
+        const reportId = req.params.reportId;
+        const password = req.body.password;
+
+        const closedReport = await closeReport(reportId, password);
+        res.send(closedReport);
+    } catch (err) {
+        next(err);
+    }
+});
+
 
 
 /**
@@ -73,6 +86,20 @@ apiRouter.post('/reports', async (req, res, next) => {
  * - on success, it should send back the object returned by createReportComment
  * - on caught error, call next(error)
  */
+
+apiRouter.post('/reports/:reportId/comments', async (req, res, next) => {
+    try {
+        const reportId = req.params.reportId;
+        const body = req.body;
+
+        const createdReport = await createReportComment(reportId, body);
+
+        res.send(createdReport);
+
+    } catch (err) {
+        next(err);
+    }
+});
 
 
 
